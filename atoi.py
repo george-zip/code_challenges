@@ -1,6 +1,8 @@
 """
-State-machine-ish approach using the value of variables for 
-the implicit state 
+Leet Code Problem 8: String to Integer (atoi).
+This approach uses the value of variables for the implicit state 
+of the parsing. I would probably use a state machine if this 
+were more complex.
 """
 
 class Solution:

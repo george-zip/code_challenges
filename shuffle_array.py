@@ -1,6 +1,7 @@
 """
 Leetcode 384: Shuffle an Array
-- Given an integer array nums, design an algorithm to randomly shuffle the array. All permutations of the array should be equally likely as a result of the shuffling.
+- Given an integer array nums, design an algorithm to randomly shuffle the array. 
+- All permutations of the array should be equally likely as a result of the shuffling.
 - Implement the Solution class with reset and shuffle methods
 - This implementation uses a Fisher-Yates shuffle because it's easy to 
 follow and has time complexity of O(n).

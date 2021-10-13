@@ -59,6 +59,9 @@ def n_sum_iterative(nums: List[int], target: int) -> List:
 
 
 def bin_search(nums: List[int], start_idx: int, end_idx: int, target: int) -> int:
+	"""
+	Perform binary search of nums between start_idx and end_idx for the target value
+	"""
 	idx = (end_idx + start_idx) // 2
 	while end_idx >= start_idx:
 		if nums[idx] == target:

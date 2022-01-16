@@ -1,13 +1,15 @@
 import pytest
-from typing import List
+from typing import List, Tuple
 
 """
 Two approaches to problem of merging calendar entries
 Entries are tuples of integers with the format (start_time, end_time) where there may be overlap between entries
 """
 
+Meeting = Tuple[int, int]
 
-def meetings_overlap(meeting1: (int, int), meeting2: (int, int)) -> bool:
+
+def meetings_overlap(meeting1: Meeting, meeting2: Meeting) -> bool:
     """
     Return true if meetings overlap. Order of arguments does not matter
     :param meeting1: First meeting
@@ -17,7 +19,7 @@ def meetings_overlap(meeting1: (int, int), meeting2: (int, int)) -> bool:
     return meeting2[0] <= meeting1[0] <= meeting2[1] or meeting1[0] <= meeting2[0] <= meeting1[1]
 
 
-def merge_meetings(meeting1: (int, int), meeting2: (int, int)) -> (int, int):
+def merge_meetings(meeting1: Meeting, meeting2: Meeting) -> Meeting:
     """
     Merge two overlapping meeting and return result
     :param meeting1: First meeting
@@ -29,15 +31,13 @@ def merge_meetings(meeting1: (int, int), meeting2: (int, int)) -> (int, int):
     return min(meeting1[0], meeting2[0]), max(meeting1[1], meeting2[1])
 
 
-def merge_calendars(meetings: List[(int, int)]) -> List[(int, int)]:
+def merge_calendars(meetings: List[Meeting]) -> List[Meeting]:
     """
     Approach 1: Sort meetings by start date then iterate through sorted meetings merging with previous if it overlaps
     Worst case performance O(n log n)
     :param meetings: List of meetings to merge
     :return: Merged calendar
     """
-    if len(meetings) < 2:
-        return meetings
     meetings = sorted(meetings)
     merged_calendar = []
     for meeting in meetings:
@@ -48,7 +48,7 @@ def merge_calendars(meetings: List[(int, int)]) -> List[(int, int)]:
     return merged_calendar
 
 
-def merge_calendars_bin_search(meetings: List[(int, int)]) -> List[(int, int)]:
+def merge_calendars_bin_search(meetings: List[Meeting]) -> List[Meeting]:
     """
     Approach 2: For each meeting in meetings, use a binary search by meeting start time to find where it sits in
     the merged calendar. Merge with adjacent meetings if there is overlap.

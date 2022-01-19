@@ -12,21 +12,14 @@ def get_max_profit(prices: List[int]) -> int:
     :param prices: List of prices in time order
     :return: Maximum profit
     """
-    current_min = 0
-    current_max = 0
-    max_profit_so_far = 0
-    for idx, px in enumerate(prices):
-        if idx == 0:
-            current_min = px
-            current_max = px
-        else:
-            if px < current_min:
-                max_profit_so_far = max(max_profit_so_far, current_max - current_min)
-                current_min = px
-                current_max = px
-            elif px > current_max:
-                current_max = px
-    return max(max_profit_so_far, current_max - current_min)
+    if len(prices) < 2:
+        return 0
+    current_min = prices[0]
+    max_profit_so_far = prices[1] - prices[0]
+    for idx in range(1, len(prices)):
+        max_profit_so_far = max(max_profit_so_far, prices[idx] - current_min)
+        current_min = min(current_min, prices[idx])
+    return max_profit_so_far
 
 
 stock_prices = [16, 10, 15, 10, 7, 5, 8, 11, 9]
